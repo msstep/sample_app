@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  get 'users/new'
-
+  #get 'users/new'
+  resources :users
   #get 'static_pages/home'
   #match '/', to: 'static_pages#home', via: 'get'  это не работает
   root  'static_pages#home'
