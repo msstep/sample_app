@@ -38,7 +38,7 @@ GEM
       rack (>= 1.0.0)
       rack-test (>= 0.5.4)
       xpath (~> 2.0)
-    childprocess (0.5.6)
+    childprocess (0.5.7)
       ffi (~> 1.0, >= 1.0.11)
     coffee-rails (4.0.1)
       coffee-script (>= 2.2.0)
@@ -46,7 +46,7 @@ GEM
     coffee-script (2.4.1)
       coffee-script-source
       execjs
-    coffee-script-source (1.9.1.1)
+    coffee-script-source (1.8.0)
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.6.0)
@@ -69,7 +69,7 @@ GEM
       mime-types (>= 1.16, < 3)
     mime-types (2.6.2)
     mini_portile (0.6.2)
-    minitest (5.8.1)
+    minitest (5.8.2)
     multi_json (1.11.2)
     nokogiri (1.6.6.2-x86-mingw32)
       mini_portile (~> 0.6.0)
@@ -139,7 +139,7 @@ GEM
     thor (0.19.1)
     thread_safe (0.3.5)
     tilt (1.4.1)
-    turbolinks (2.5.3)
+    turbolinks (1.1.1)
       coffee-rails
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
@@ -160,6 +160,7 @@ DEPENDENCIES
   bootstrap-sass (= 2.3.2.0)
   capybara (= 2.1.0)
   coffee-rails (~> 4.0.0)
+  coffee-script-source (= 1.8.0)
   factory_girl_rails (= 4.2.1)
   jbuilder (~> 2.0)
   jquery-rails
@@ -171,6 +172,6 @@ DEPENDENCIES
   sdoc (~> 0.4.0)
   selenium-webdriver (= 2.35.1)
   sqlite3 (= 1.3.8)
-  turbolinks
+  turbolinks (= 1.1.1)
   tzinfo-data
   uglifier (>= 1.3.0)
