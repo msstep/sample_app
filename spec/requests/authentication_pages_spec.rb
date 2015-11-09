@@ -52,6 +52,17 @@ describe "Authentication" do
 
     describe "for non-signed-in users" do
       let(:user) { FactoryGirl.create(:user) }
+      
+      describe "when visit any pages" do #упражнение 3 главы 9
+        before { visit root_path }
+        it { should_not have_title('| Home') } 
+        it { should_not have_link('Settings',    href: edit_user_path(user)) }
+        it { should_not have_link('Profile',    href: edit_user_path(user)) }
+        before{visit signin_path}  
+        it { should have_title('Sign in') }
+        it { should_not have_link('Settings',    href: edit_user_path(user)) }
+        it { should_not have_link('Profile',    href: edit_user_path(user)) }    
+      end
 
       describe "when attempting to visit a protected page" do
         before do
