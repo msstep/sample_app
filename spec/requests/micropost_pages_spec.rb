@@ -28,6 +28,8 @@ describe "Micropost pages" do
       it "should create a micropost" do
         expect { click_button "Post" }.to change(Micropost, :count).by(1)
       end
+
+      it { should have_content(user.microposts.count) }
     end
   end
 
@@ -41,6 +43,6 @@ describe "Micropost pages" do
         expect { click_link "delete" }.to change(Micropost, :count).by(-1)
       end
     end
-  end
+  end 
   
 end

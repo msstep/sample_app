@@ -186,6 +186,22 @@ describe "signup page" do
       it { should have_content(m2.content) }
       it { should have_content(user.microposts.count) }
     end
+
+    describe "pagination1" do
+
+      before do
+       30.times { FactoryGirl.create(:micropost, user: user, content: "Foo") } 
+      end
+
+      #after(:all)  { Micropost.delete_all }
+      it { should have_selector('div.pagination') }
+      microposts = user.microposts.to_a 
+      
+      microposts.each do |item|
+        expect(page).to have_selector("li##{item.id}", text: item.content) 
+      end
+    end
+
   end   
 	
 end
