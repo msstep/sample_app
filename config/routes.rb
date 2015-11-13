@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   #get 'users/new'
   resources :users
   resources :sessions, only: [:new, :create, :destroy]
+  resources :microposts, only: [:create, :destroy]
   #get 'static_pages/home'
   #match '/', to: 'static_pages#home', via: 'get'  это не работает
   root  'static_pages#home'
