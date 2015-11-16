@@ -187,20 +187,58 @@ describe "signup page" do
       it { should have_content(user.microposts.count) }
     end
 
-    describe "pagination1" do
-
+    describe "pagination" do
+      let(:user) { FactoryGirl.create(:user) }
+      
       before do
-       30.times { FactoryGirl.create(:micropost, user: user, content: "Foo") } 
-      end
+        30.times { FactoryGirl.create(:micropost, user: user, content: "Foo") }       
+        sign_in user, no_capybara: true
+        visit user_path(user)
+      end  
+      
 
       #after(:all)  { Micropost.delete_all }
+      it { should have_content(user.name) }
+      it { should have_content("Microposts (#{user.microposts.count})") } # используя #{} важно чтобы были двойные кавычки
       it { should have_selector('div.pagination') }
-      microposts = user.microposts.to_a 
-      
-      microposts.each do |item|
-        expect(page).to have_selector("li##{item.id}", text: item.content) 
+      #it { should have_content(user.microposts.count) }
+
+      it "should list each micropost" do
+        Micropost.paginate(page: 1).each do |micropost|
+          expect(page).to have_content(micropost.content)
+        end
       end
+
     end
+
+    describe "test1" do
+      let(:user) { FactoryGirl.create(:user) }
+      
+      before do
+        30.times { FactoryGirl.create(:micropost, user: user, content: "Foo") }       
+        sign_in user
+        visit user_path(user)
+      end  
+      
+
+      #after(:all)  { Micropost.delete_all }
+      it { should have_content(user.name) }
+      it { should have_content("Microposts (#{user.microposts.count})") } # используя #{} важно чтобы были двойные кавычки
+      it { should have_selector('div.pagination') }
+      it { should have_content('Posted') }
+      it { should have_content('delete') }
+      #it { should have_content(user.microposts.count) }
+
+      it "should list each micropost" do
+        Micropost.paginate(page: 1).each do |micropost|
+          expect(page).to have_content(micropost.content)
+          expect(page).to have_link('delete', href: micropost_path(micropost)) if micropost.user_id = user.id 
+          expect(page).not_to have_link('delete', href: micropost_path(micropost)) if micropost.user_id != user.id           
+          #expect(page).to have_link('delete') 
+        end
+      end
+
+    end    
 
   end   
 	
