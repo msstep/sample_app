@@ -20,7 +20,8 @@ class User < ActiveRecord::Base
 
   def feed
     # Это предварительное решение. См. полную реализацию в "Following users".
-    Micropost.where("user_id = ?", id)
+    #Micropost.where("user_id = ?", id)
+    Micropost.from_users_followed_by(self)
   end
 
   def User.new_remember_token
